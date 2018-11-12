@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 require('./styles.scss');
 
 class BusinessCard extends Component {
@@ -34,6 +33,14 @@ class BusinessCard extends Component {
                         <p className="card-text">
                             {this.props.businessDescription}
                         </p>
+                        {
+                            !!this.props.businessRating && 
+                            <p>Rating: {this.props.businessRating}</p>
+                        }
+                        {
+                            !!this.props.businessCategory && 
+                            <p>Category: {this.props.businessRating}</p>
+                        }
                     </div>                    
                 </div>
                 {this.props.children}          

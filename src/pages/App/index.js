@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import BusinessCards from './components/BusinessCards/index';
-import BusinessCard from '../../components/BusinessCard';
+import BusinessCard from './components/BusinessCard';
 const businessesData = require('../../data/businesses-data.json');
 const reviewsData = require('../../data/reviews-data.json');
+var classNames = require('classnames');
 
 export default class App extends Component {
     state = {
@@ -10,7 +11,7 @@ export default class App extends Component {
         reviewsData: reviewsData,
         selectedCategory: 'all',
         selectedSortMethod: undefined,
-        selectedBusinessId: undefined
+        selectedBusiness: undefined,
     }
 
     componentDidMount() {
@@ -78,6 +79,11 @@ export default class App extends Component {
         const selectedCategory = event.target.value;
         this.setState(() => ({selectedCategory}));
     }
+
+    handleSelectBusiness = (id) => {
+        const selectedBusiness = this.state.businessesData.find((business) => business.id === id);
+        this.setState({selectedBusiness});
+    }
     
     render() {
         const pageTitle = "select your business";
@@ -91,7 +97,12 @@ export default class App extends Component {
         return (
             <div className="container">
 
-                <div id="step1">
+                <div
+                    id="step1"
+                    className={classNames({
+                        'd-none': !!this.state.selectedBusiness
+                    })}
+                >
                     <h4>{pageTitle.toUpperCase()}</h4>
                     <form>
                         <label>
@@ -118,14 +129,37 @@ export default class App extends Component {
                             </select>
                         </label>                    
                     </form>
-                    <BusinessCards businessesData={this.state.businessesData} />
+                    <BusinessCards
+                        businessesData = {this.state.businessesData}
+                        handleSelectBusiness = {this.handleSelectBusiness}
+                    />
                 </div>
+                {
+                    this.state.selectedBusiness &&
+                        <div id="step2">
+                            <BusinessCard
+                                businessName={this.state.selectedBusiness.name}
+                                businessCategory={this.state.selectedBusiness.category}
+                                businessCity={this.state.selectedBusiness.city}
+                                businessCountry={this.state.selectedBusiness.country}
+                                businessDescription={this.state.selectedBusiness.description}
+                                imageUrl={this.state.selectedBusiness.imageUrl}
+                            >
+                                <button className="btn btn-success"> Submit </button>
+                            </BusinessCard>
 
-                <div id="step2" className="d-none">
-                <BusinessCard>
-                <button>Go To previous page</button>
-                </BusinessCard>
-                </div>
+                            <button
+                                onClick={() => this.setState({
+                                    selectedBusiness: undefined
+                                })}
+                            >
+                                Go to Previous Page
+                            </button>
+                        </div>
+
+                }
+
+                
                 
             </div>
         );

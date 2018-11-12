@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BusinessCard from '../../../../components/BusinessCard/index';
+import BusinessCard from '../BusinessCard/index';
 
 class BusinessCards extends Component {
     state = {  }
@@ -16,7 +16,12 @@ class BusinessCards extends Component {
                             businessDescription = {business.description}
                             imageUrl = {business.imageUrl}
                         >
-                            <button className="btn btn-success">Continue</button>
+                            <button
+                                className="btn btn-success"
+                                onClick = {() => this.props.handleSelectBusiness(business.id)}
+                            >
+                                Continue
+                            </button>
                         </BusinessCard>                            
                     ))
                 }

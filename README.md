@@ -1,5 +1,5 @@
 # business-review
-
+a take home project in React, strated with my-react-boilerplate-with-bootstrap.
 * suitable **only for development** (at the moment);
 * it supports **JSX**, **ES6** and **class properties** through **babel** presets and plugins;
 * it supports styling with **SCSS** and **Bootstrap**;
@@ -12,12 +12,11 @@
 
 ## ABOUT THE PROJECT STRUCTURE
 
-### components
-add here your global components.
-
-### pages
-* add here the components that make up your single pages or "scenes";
-* nest inside a page the components that are used only in that page;
+### pages and components
+* Inside page folder there are the pages that make up the application;
+* currently there is a single page named "App";
+* components are nested inside pages folder;
+* styles for each component are located inside the component folder.
 
 ### styles
 this folder is only for:
@@ -26,10 +25,10 @@ this folder is only for:
 * variable and mixins declarations;
 
 ### routers
-it is where you can configure client-side routing.
+it is where I configure client-side routing.
 
 ### images
-store here your image assets.
+stores image assets.
 
 ## Notes
 * source-map settings not working;
