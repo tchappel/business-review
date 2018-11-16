@@ -1,9 +1,16 @@
-import $ from 'jquery';
-import Popper from 'popper.js';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
-import './styles/styles.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import "bootstrap";
+// import $ from "jquery";
+// import Popper from "popper.js";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+import * as serviceWorker from "./serviceWorker";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();

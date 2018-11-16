@@ -1,34 +1,31 @@
 # business-review
-a take home project in React, strated with my-react-boilerplate-with-bootstrap.
-* suitable **only for development** (at the moment);
-* it supports **JSX**, **ES6** and **class properties** through **babel** presets and plugins;
-* it supports styling with **SCSS** and **Bootstrap**;
-* it uses module "classNames" for conditionally joining classNames together.
-* import images with webpack url-loader and file-loader;
-* **Client-side routing** with **react-router-dom**.
+
+a take home project in React, with create-react-app boilerplate.
+
+- it uses **Bootstrap**;
+- it uses **Aphrodite** as CSS-in-JS solution to style components;
+- it uses module **classNames** for conditionally joining classNames together;
+- **Client-side routing** with **react-router-dom**.
 
 ## SCRIPTS
-* run "yarn run dev" to execute the DevServer.
+
+- run "yarn run start" to execute the DevServer.
 
 ## ABOUT THE PROJECT STRUCTURE
 
-### pages and components
-* Inside page folder there are the pages that make up the application;
-* currently there is a single page named "App";
-* components are nested inside pages folder;
-* styles for each component are located inside the component folder.
+## index.js
 
-### styles
-this folder is only for:
-* global styles
-* normalization/reset
-* variable and mixins declarations;
+- entry file for webpack
 
-### routers
-it is where I configure client-side routing.
+## App.js
 
-### images
-stores image assets.
+- it is the components that represents the SPA and that holds the state source-of-truth
 
-## Notes
-* source-map settings not working;
+### components
+
+- Inside this folder there are all components that make up the application;
+- style is inside the component .js file
+
+### data
+
+stores the .json files that provide data for the application;
