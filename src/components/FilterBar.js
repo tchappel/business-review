@@ -7,7 +7,7 @@ const FilterBar = props => {
         <div className="input-group mr-4">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <label for="sortAZ">Sort:</label>
+              <label htmlFor="sortAZ">Sort:</label>
             </span>
           </div>
           <select
@@ -23,7 +23,7 @@ const FilterBar = props => {
         <div className="input-group">
           <div className="input-group-prepend">
             <span className="input-group-text">
-              <label for="selectBzCategory">Category:</label>
+              <label htmlFor="selectBzCategory">Category:</label>
             </span>
           </div>
           <select

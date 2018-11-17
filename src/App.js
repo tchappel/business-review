@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import BusinessCard from "./components/BusinessCard";
+import { Route } from "react-router-dom";
 import BusinessCards from "./components/BusinessCards";
 import FilterBar from "./components/FilterBar";
+import BusinessReview from "./components/BusinessReview";
 var businessesData = require("./data/businesses-data.json");
 var reviewsData = require("./data/reviews-data.json");
 var classNames = require("classnames");
@@ -11,8 +12,7 @@ export default class App extends Component {
     businessesData: businessesData.map(obj => ({ ...obj })),
     reviewsData: reviewsData,
     selectedCategory: "all",
-    selectedSortMethod: undefined,
-    selectedBusiness: undefined
+    selectedSortMethod: undefined
   };
 
   businessCategories = [
@@ -87,11 +87,32 @@ export default class App extends Component {
     this.setState(() => ({ selectedCategory }));
   };
 
-  handleSelectBusiness = id => {
+  getBusinessReviewData = businessId => {
     const selectedBusiness = this.state.businessesData.find(
-      business => business.id === id
+      business => business.id === businessId
     );
-    this.setState({ selectedBusiness });
+  };
+
+  getBusinessRating = businessId => {
+    console.log("getBusinessRating!");
+    let scoreTotal = 0;
+    let reviewsCount = 0;
+    const maxScore = 5;
+    for (let customer in reviewsData) {
+      for (let review of customer) {
+        if (review.business_id === businessId) {
+          scoreTotal += review.score;
+          reviewsCount += 1;
+          continue;
+        }
+      }
+    }
+
+    if (reviewsCount !== 0) {
+      return `${Math.round(scoreTotal / reviewsCount)}/${maxScore}`;
+    } else {
+      return "No reviews for this business.";
+    }
   };
 
   render() {
@@ -116,30 +137,15 @@ export default class App extends Component {
             handleSelectBusiness={this.handleSelectBusiness}
           />
         </div>
-        {this.state.selectedBusiness && (
-          <div id="step2">
-            <BusinessCard
-              businessName={this.state.selectedBusiness.name}
-              businessCategory={this.state.selectedBusiness.category}
-              businessCity={this.state.selectedBusiness.city}
-              businessCountry={this.state.selectedBusiness.country}
-              businessDescription={this.state.selectedBusiness.description}
-              imageUrl={this.state.selectedBusiness.imageUrl}
-            >
-              <button className="btn btn-success"> Submit </button>
-            </BusinessCard>
-
-            <button
-              onClick={() =>
-                this.setState({
-                  selectedBusiness: undefined
-                })
-              }
-            >
-              Go to Previous Page
-            </button>
-          </div>
-        )}
+        <Route
+          path="/step2"
+          render={props => (
+            <BusinessReview
+              {...props}
+              getBusinessRating={this.getBusinessRating}
+            />
+          )}
+        />
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BusinessCard from "./BusinessCard";
 
 const BusinessCards = props => {
@@ -13,12 +14,9 @@ const BusinessCards = props => {
           businessDescription={business.description}
           imageUrl={business.imageUrl}
         >
-          <button
-            className="btn btn-success"
-            onClick={() => props.handleSelectBusiness(business.id)}
-          >
-            Continue
-          </button>
+          <Link to={"/step2?businessId=" + business.id}>
+            <button className="btn btn-success">Continue</button>
+          </Link>
         </BusinessCard>
       ))}
     </div>
