@@ -80,23 +80,3 @@ const styles = StyleSheet.create({
     }
   }
 });
-
-/*
-
-responsively enforce wrapping
-
-add css for margin fix -- this will not be needed after beta
-.card - deck.card {
-  margin - left: 15px;
-  margin - right: 15px;
-}
-
-.card - deck.card: not(: last - child) {
-  margin - right: 15px;
-}
-
-.card - deck.card: not(: first - child) {
-  margin - left: 15px;
-}
-
-*/
